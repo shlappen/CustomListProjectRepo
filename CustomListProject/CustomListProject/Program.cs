@@ -13,23 +13,25 @@ namespace CustomListProject
 
 
             CustomList<int> myList = new CustomList<int>();
-            //int expected = 2;
-            int value1 = 2;
-            int value2 = 4;
-            int value3 = 6;
-            int value4 = 8;
-            int value5 = 10;
-
-
+            int value1 = 5;
+            int value2 = 10;
+            int value3 = 15;
+            int value4 = 20;
+            //Act
             myList.Add(value1);
             myList.Add(value2);
-            myList.Add(value3);
-            myList.Add(value4);
-            myList.Add(value5);
 
-            Console.WriteLine(myList.Count);
-            Console.WriteLine(myList.Capacity);
+            Console.WriteLine(myList[0]);
+            Console.WriteLine(myList[1]);
+
+
+            myList.Remove(value1);
+
+            Console.WriteLine(myList[0]);
+
             Console.ReadLine();
+            //Assert
+
 
 
         }

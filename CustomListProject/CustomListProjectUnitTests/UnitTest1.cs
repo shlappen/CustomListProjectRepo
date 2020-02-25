@@ -7,6 +7,7 @@ namespace CustomListProjectUnitTests
     [TestClass]
     public class UnitTest1
     {
+        //ADD
         [TestMethod]
         public void Add_OneValue_CountIncrement()
         {
@@ -183,7 +184,7 @@ namespace CustomListProjectUnitTests
         public void Add_9Values_VerifyValueAtIndex5Persists()
         {
             CustomList<int> myList = new CustomList<int>();
-            int expected = 10;
+            int expected = 12;
             int value1 = 2;
             int value2 = 4;
             int value3 = 6;
@@ -264,19 +265,275 @@ namespace CustomListProjectUnitTests
         }
 
 
+
+
+
+
+        //Test if it removes dup values
+        //indexer exception
         //Remove
+        //remove anything not in the list count stays the same
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void Remove_Value1From2ValueArrayGetIndex0_GetException()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int value1 = 2;
+
+
+            myList.Add(value1);
+
+
+            myList.Remove(myList[1]);
+        }
+
+        [TestMethod]
+        public void Remove_Value1From2ValueArray_GetIndex0()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 4;
+            int value1 = 2;
+            int value2 = 4;
+
+            myList.Add(value1);
+            myList.Add(value2);
+
+            myList.Remove(value1);
+            int actual = myList[0];
+
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value2From2ValueArray_GetIndex0()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 4;
+            int value1 = 2;
+            int value2 = 4;
+
+            myList.Add(value1);
+            myList.Add(value2);
+
+            myList.Remove(value1);
+            int actual = myList[0];
+
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value1From2ValueArray_GetCount()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 1;
+            int value1 = 2;
+            int value2 = 4;
+
+            myList.Add(value1);
+            myList.Add(value2);
+
+            myList.Remove(value1);
+            int actual = myList.Count;
+
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value1From3ValueArray_GetCount()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 2;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+
+            myList.Remove(value1);
+            int actual = myList.Count;
+
+            Assert.AreEqual(expected, actual);
+            
+        }
+
+        [TestMethod]
+        public void Remove_Value2From3ValueArray_GetCount()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 2;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+
+            myList.Remove(value2);
+            int actual = myList.Count;
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value3From3ValueArray_GetCount()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 2;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+
+            myList.Remove(value3);
+            int actual = myList.Count;
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
+
+        //RemoveValuesGetIndexes
+        [TestMethod]
+        public void Remove_Value1From3ValueArray_GetIndex0()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 4;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+
+            myList.Remove(value1);
+            int actual = myList[0];
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value2From3ValueArray_GetIndex0Persists()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 2;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+
+            myList.Remove(value2);
+            int actual = myList[0];
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value3From3ValueArray_GetIndex0()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 2;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+
+            myList.Remove(value3);
+            int actual = myList[0];
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
+        [TestMethod]
+        public void Remove_Value1From3ValueArray_GetIndex1()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 6;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+
+            myList.Remove(value1);
+            int actual = myList[1];
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value2From3ValueArray_GetIndex1()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 6;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+
+            myList.Remove(value2);
+            int actual = myList[1];
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value3From3ValueArray_GetIndex1()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 4;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+
+            myList.Remove(value3);
+            int actual = myList[1];
+
+            Assert.AreEqual(expected, actual);
+
+        }
+        //[TestMethod]
         //[ExpectedException(typeof(ArgumentOutOfRangeException))]
-        //public void Remove_IndexOutOfRangeException()
-        //{
-        //    CustomList<int> myList = new CustomList<int>();
-        //    if (myList.Count == 2)
-        //    {
 
-        //    }
+        //public void Remove_NonExistent
 
-
-
-        //}
+        //[TestMethod]
+        //public void Remove_Value
 
     }
 }
