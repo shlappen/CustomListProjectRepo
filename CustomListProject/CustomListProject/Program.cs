@@ -21,14 +21,7 @@ namespace CustomListProject
             myList.Add(value2);
             myList.Add(value3);
 
-            Console.WriteLine(myList[0]);
-            Console.WriteLine(myList[1]);
-
-
-            myList.Remove(value2);
-
-            Console.WriteLine(myList[0]);
-
+                Console.WriteLine(myList.ToString());
             Console.ReadLine();
             //Assert
 

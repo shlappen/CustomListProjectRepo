@@ -267,24 +267,25 @@ namespace CustomListProjectUnitTests
 
 
 
-
-
         //Test if it removes dup values
         //indexer exception
         //Remove
         //remove anything not in the list, count stays the same
+
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Remove_Value1From2ValueArrayGetIndex0_GetException()
+        public void Remove_Value1From1ValueArrayGetIndex0_GetException()
         {
             CustomList<int> myList = new CustomList<int>();
+
             int value1 = 2;
 
 
             myList.Add(value1);
 
 
-            myList.Remove(myList[1]);
+            myList.Remove(myList[0]);
         }
 
         [TestMethod]
@@ -380,7 +381,7 @@ namespace CustomListProjectUnitTests
             int actual = myList.Count;
 
             Assert.AreEqual(expected, actual);
-            
+
         }
 
         [TestMethod]
@@ -568,6 +569,142 @@ namespace CustomListProjectUnitTests
             int actual = myList[2];
 
             Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value4From4ValueArray_GetIndex2()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 6;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+            int value4 = 8;
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+            myList.Add(value4);
+
+            myList.Remove(value4);
+            int actual = myList[2];
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_OneValueInListOfDuplicates_GetCount()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 3;
+            int value1 = 2;
+            int value2 = 2;
+            int value3 = 2;
+            int value4 = 2;
+
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+            myList.Add(value4);
+
+            myList.Remove(value1);
+            int actual = myList.Count;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_Value4WhenSameValueIsAtIndex1_GetIndex1()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 6;
+            int value1 = 5;
+            int value2 = 2;
+            int value3 = 6;
+            int value4 = 2;
+
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+            myList.Add(value4);
+
+            myList.Remove(value4);
+            int actual = myList[1];
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_ValueNotInList_GetCount()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 3;
+            int value1 = 5;
+            int value2 = 2;
+            int value3 = 6;
+            int value4 = 2;
+
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+            myList.Add(value4);
+
+            myList.Remove(7);
+            int actual = myList.Count;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        /////////////////////////////////////////ToString();
+        [TestMethod]
+        public void ToString_Index0()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            string expected = "5";
+            int value1 = 5;
+            int value2 = 2;
+            int value3 = 6;
+            int value4 = 2;
+
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+            myList.Add(value4);
+
+            string actual = myList[0].ToString();
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void ToString_2Variables()
+        {
+
+            CustomList<int> myList = new CustomList<int>();
+            string expected = "5262";
+            int value1 = 5;
+            int value2 = 2;
+            int value3 = 6;
+            int value4 = 2;
+
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+            myList.Add(value4);
+            string actual = myList.ToString();
+
+
+            Assert.AreEqual(expected, actual);
+
 
         }
 

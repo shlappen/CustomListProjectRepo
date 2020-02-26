@@ -8,6 +8,9 @@ namespace CustomListProject
 {
     public class CustomList<T>
     {
+
+
+
         private int capacity = 4;
         public int Capacity
         {
@@ -25,7 +28,6 @@ namespace CustomListProject
             set { array[i] = value; }
         }
 
-
         private int count;
         public int Count
         {
@@ -36,8 +38,7 @@ namespace CustomListProject
         }
 
 
-
-
+        //ADD
         public void Add(T item)
         {
             count++;
@@ -54,24 +55,7 @@ namespace CustomListProject
             }
         }
 
-        //public void Copy(T[] sourceArray, T[] targetArray, int j)
-        //{
-        //int k = 0;
-        //if (j > 2)
-        //{
-        //    k = 2;
-        //        }
-        //else
-        //{
-        //for (int i = 0; i <= count - 1; i++)
-        //{
-        //    targetArray[i] = sourceArray[j];
-        //    j++;
-        //}
-        //array = targetArray;
-        //}
-        //}
-
+        //COPY
         public void Copy(T[] targetArray)
         {
             for (int i = 0; i < count; i++)
@@ -80,16 +64,6 @@ namespace CustomListProject
             }
             array = targetArray;
         }
-
-        public void Copy(T[] targetArray, int j)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                targetArray[i] = array[j];
-                j++;
-            }
-        }
-
 
         public void Copy(T[] sourceArray, T[] targetArray, int j)
         {
@@ -102,30 +76,17 @@ namespace CustomListProject
         }
 
 
-
-
+        //REMOVE
         //if count is 1 or cannot find value, throw error
         public void Remove(T item)
         {
             count--;
             T[] targetArray = new T[capacity];
-
             for (int i = 0; i < array.Length; i++)
             {
                 if (Equals(array[i], item))
                 {
-
-                    //remove first value
                     var j = i;
-                    if (j == 0)
-                    {
-                        j++;
-                        Copy(targetArray, j);
-                        array = targetArray;
-                        break;
-                    }
-
-                    //remove last value
                     if (j == count)
                     {
                         Copy(targetArray);
@@ -134,74 +95,37 @@ namespace CustomListProject
                     }
                     else
                     {
-                       T[] newArray = new T[capacity];
-
                         Copy(array, array, j);
+                        Copy(targetArray);
                         break;
                     }
                 }
-
             }
         }
 
-        //9 tests failed
-        //public void Remove(T item)
+
+        //TOSTRING
+        public override string ToString()
+        {
+            var result = new StringBuilder();
+            for (int i = 0; i < count; i++)
+            {
+                result.Append(array[i].ToString());
+            }
+            return result.ToString();
+        }
         //{
-        //    count--;
-        //    for (int i = 0; i < array.Length; i++)
-        //    {
-        //        if (Equals(array[i], item))
-        //        {
-        //            int j = i;
-        //            Copy(array, array, j);
-        //        }
-
-        //    }
+        //    customListString = item.ToString();
         //}
-        //public void Remove(T item)
-        //{
-        //    count--;
-        //    int j = 0;
-        //    if (Find(item, j) == true)
-        //    {
-        //        Copy(array, array, j);
+        //return customListString;
 
-        //    }
+        //return $"[{ToString()}]";
 
 
-
-
-        //    int j = i;
-        //    if (j == 0)
-        //    {
-        //        j++;
-        //    }
-
-        //    break;
-
-
-
-
-        //}
-
-        //public bool Find(T item, int j)
-        //{
-        //    for (int i = 0; i < array.Length; i++)
-        //    {
-        //        if (Equals(array[i], item))
-        //        {
-        //            j = i;
-        //            return true;
-        //        }
-
-        //    }
-        //    return false;
-        //}
 
 
 
     }
-
 }
 
 
