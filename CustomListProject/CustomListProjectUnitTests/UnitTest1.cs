@@ -272,7 +272,7 @@ namespace CustomListProjectUnitTests
         //Test if it removes dup values
         //indexer exception
         //Remove
-        //remove anything not in the list count stays the same
+        //remove anything not in the list, count stays the same
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void Remove_Value1From2ValueArrayGetIndex0_GetException()
@@ -542,6 +542,30 @@ namespace CustomListProjectUnitTests
 
             myList.Remove(value3);
             int actual = myList[1];
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Remove_Value3From4ValueArray_GetIndex2()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 8;
+            int value1 = 2;
+            int value2 = 4;
+            int value3 = 6;
+            int value4 = 8;
+
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+            myList.Add(value4);
+
+
+            myList.Remove(value3);
+            int actual = myList[2];
 
             Assert.AreEqual(expected, actual);
 

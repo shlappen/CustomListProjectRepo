@@ -91,21 +91,21 @@ namespace CustomListProject
         }
 
 
-        //public void Copy(T[] sourceArray, T[] newTargetArray, int j)
-        //{
-        //    for (int i = j; i < count; i++)
-        //    {
-        //        targetArray[i-1] = sourceArray[j];
-        //        j++;
-        //    }
-        //    array = targetArray;
-        //}
-
-    
+        public void Copy(T[] sourceArray, T[] targetArray, int j)
+        {
+            for (int i = j; j < count; i++)
+            {
+                targetArray[i] = sourceArray[j + 1];
+                j++;
+            }
+            array = targetArray;
+        }
 
 
-            //if count is 1 or cannot find value, throw error
-    public void Remove(T item)
+
+
+        //if count is 1 or cannot find value, throw error
+        public void Remove(T item)
         {
             count--;
             T[] targetArray = new T[capacity];
@@ -134,8 +134,10 @@ namespace CustomListProject
                     }
                     else
                     {
-                        Copy(targetArray, j);
+                       T[] newArray = new T[capacity];
 
+                        Copy(array, array, j);
+                        break;
                     }
                 }
 
