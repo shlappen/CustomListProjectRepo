@@ -81,26 +81,79 @@ namespace CustomListProject
                 targetArray[i] = sourceArray[j];
                 j++;
             }
+            
             array = targetArray;
         }
 
         public void Remove(T item)
         {
             count--;
-
-
             for (int i = 0; i < array.Length; i++)
             {
                 if (Equals(array[i], item))
                 {
-                    int j = i + 1;
-                    Copy(array, array, j);
-                    break;
+                    int j = i;
+                    T[] targetArray = new T[capacity];
+                    Copy(array, targetArray, j);
                 }
-
 
             }
         }
+
+        //9 tests failed
+        //public void Remove(T item)
+        //{
+        //    count--;
+        //    for (int i = 0; i < array.Length; i++)
+        //    {
+        //        if (Equals(array[i], item))
+        //        {
+        //            int j = i;
+        //            Copy(array, array, j);
+        //        }
+
+        //    }
+        //}
+        //public void Remove(T item)
+        //{
+        //    count--;
+        //    int j = 0;
+        //    if (Find(item, j) == true)
+        //    {
+        //        Copy(array, array, j);
+
+        //    }
+
+
+
+
+        //    int j = i;
+        //    if (j == 0)
+        //    {
+        //        j++;
+        //    }
+
+        //    break;
+
+
+
+
+        //}
+
+        //public bool Find(T item, int j)
+        //{
+        //    for (int i = 0; i < array.Length; i++)
+        //    {
+        //        if (Equals(array[i], item))
+        //        {
+        //            j = i;
+        //            return true;
+        //        }
+
+        //    }
+        //    return false;
+        //}
+
 
 
     }

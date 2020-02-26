@@ -326,6 +326,25 @@ namespace CustomListProjectUnitTests
         }
 
         [TestMethod]
+        public void Remove_Value2From2ValueArray_GetIndex1()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 0;
+            int value1 = 2;
+            int value2 = 4;
+
+            myList.Add(value1);
+            myList.Add(value2);
+
+            myList.Remove(value1);
+            int actual = myList[1];
+
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
         public void Remove_Value1From2ValueArray_GetCount()
         {
             CustomList<int> myList = new CustomList<int>();
@@ -428,7 +447,7 @@ namespace CustomListProjectUnitTests
         }
 
         [TestMethod]
-        public void Remove_Value2From3ValueArray_GetIndex0Persists()
+        public void Remove_Value2From3ValueArray_Index0Persists()
         {
             CustomList<int> myList = new CustomList<int>();
             int expected = 2;
@@ -527,6 +546,8 @@ namespace CustomListProjectUnitTests
             Assert.AreEqual(expected, actual);
 
         }
+
+
         //[TestMethod]
         //[ExpectedException(typeof(ArgumentOutOfRangeException))]
 
