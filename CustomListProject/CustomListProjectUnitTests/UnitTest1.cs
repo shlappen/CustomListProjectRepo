@@ -275,7 +275,7 @@ namespace CustomListProjectUnitTests
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Remove_Value1From1ValueArrayGetIndex0_GetException()
+        public void Remove_Value2From1ValueArrayGetIndex0_GetException()
         {
             CustomList<int> myList = new CustomList<int>();
 
@@ -285,7 +285,7 @@ namespace CustomListProjectUnitTests
             myList.Add(value1);
 
 
-            myList.Remove(myList[0]);
+            myList.Remove(myList[1]);
         }
 
         [TestMethod]
@@ -661,16 +661,26 @@ namespace CustomListProjectUnitTests
         }
 
 
-        /////////////////////////////////////////ToString();
+
+
+
+
+
+
+
+
+
+
+        /////ToString();
         [TestMethod]
-        public void ToString_Index0()
+        public void ToString_4Ints()
         {
             CustomList<int> myList = new CustomList<int>();
-            string expected = "5";
-            int value1 = 5;
+            string expected = "1,2,3,4,";
+            int value1 = 1;
             int value2 = 2;
-            int value3 = 6;
-            int value4 = 2;
+            int value3 = 3;
+            int value4 = 4;
 
 
             myList.Add(value1);
@@ -678,36 +688,325 @@ namespace CustomListProjectUnitTests
             myList.Add(value3);
             myList.Add(value4);
 
-            string actual = myList[0].ToString();
-
-            Assert.AreEqual(expected, actual);
-
-        }
-
-        [TestMethod]
-        public void ToString_2Variables()
-        {
-
-            CustomList<int> myList = new CustomList<int>();
-            string expected = "5262";
-            int value1 = 5;
-            int value2 = 2;
-            int value3 = 6;
-            int value4 = 2;
-
-
-            myList.Add(value1);
-            myList.Add(value2);
-            myList.Add(value3);
-            myList.Add(value4);
             string actual = myList.ToString();
 
-
             Assert.AreEqual(expected, actual);
-
 
         }
 
+        [TestMethod]
+        public void ToString_3Bools()
+        {
+
+            CustomList<bool> myList = new CustomList<bool>();
+            string expected = "False,True,True,";
+            bool value1 = false;
+            bool value2 = true;
+            bool value3 = true;
+
+
+            myList.Add(value1);
+            myList.Add(value2);
+            myList.Add(value3);
+            string actual = myList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void ToString_2()
+        {
+            CustomList<string> myList = new CustomList<string>();
+            string expected = "This,works,";
+            string value1 = "This";
+            string value2 = "works";
+
+            myList.Add(value1);
+            myList.Add(value2);
+
+            string actual = myList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Overload_PlusOperator_ConcatenateTwoLists()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            string expected = "1,3,5,2,4,6,";
+            int value1 = 1;
+            int value2 = 2;
+            int value3 = 3;
+            int value4 = 4;
+            int value5 = 5;
+            int value6 = 6;
+
+            one.Add(value1);
+            one.Add(value3);
+            one.Add(value5);
+
+            two.Add(value2);
+            two.Add(value4);
+            two.Add(value6);
+            CustomList<int> customList = one + two;
+            string actual = customList.ToString();
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+        public void Overload_PlusOperator_GetCount()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            int expected = 6;
+            int value1 = 1;
+            int value2 = 2;
+            int value3 = 3;
+            int value4 = 4;
+            int value5 = 5;
+            int value6 = 6;
+
+            one.Add(value1);
+            one.Add(value3);
+            one.Add(value5);
+
+            two.Add(value2);
+            two.Add(value4);
+            two.Add(value6);
+            CustomList<int> customList = one + two;
+            int actual = customList.Count;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Overload_PlusOperator_GetCapacity()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            int expected = 8;
+            int value1 = 1;
+            int value2 = 2;
+            int value3 = 3;
+            int value4 = 4;
+            int value5 = 5;
+            int value6 = 6;
+
+            one.Add(value1);
+            one.Add(value3);
+            one.Add(value5);
+
+            two.Add(value2);
+            two.Add(value4);
+            two.Add(value6);
+            CustomList<int> customList = one + two;
+            int actual = customList.Capacity;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void OverloadPlusOperator_AddTwoLists_DifferentSizes()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            string expected = "1,2,3,4,5,6,7,";
+            int value1 = 1;
+            int value2 = 2;
+            int value3 = 3;
+            int value4 = 4;
+            int value5 = 5;
+            int value6 = 6;
+            int value7 = 7;
+
+            one.Add(value1);
+            one.Add(value2);
+            one.Add(value3);
+
+            two.Add(value4);
+            two.Add(value5);
+            two.Add(value6);
+            two.Add(value7);
+            CustomList<int> customList = one + two;
+            string actual = customList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void OverloadMinusOperator_2ListsSameSize_Subtract1ValueFromList1()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            string expected = "3,5,";
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 2;
+            int value5 = 1;
+            int value6 = 6;
+
+            one.Add(value1);
+            one.Add(value2);
+            one.Add(value3);
+
+            two.Add(value4);
+            two.Add(value5);
+            two.Add(value6);
+            CustomList<int> customList = one - two;
+            string actual = customList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void OverloadMinusOperator_2ListsSameSize_Subtract2ValuesFromList1()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            string expected = "3,";
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 5;
+            int value5 = 1;
+            int value6 = 6;
+
+            one.Add(value1);
+            one.Add(value2);
+            one.Add(value3);
+
+            two.Add(value4);
+            two.Add(value5);
+            two.Add(value6);
+            CustomList<int> customList = one - two;
+            string actual = customList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void OverloadMinusOperator_2ListsDifferentSize_Subtract1ValueFromList1()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            string expected = "3,5,";
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 2;
+            int value5 = 1;
+            int value6 = 6;
+            int value7 = 6;
+
+            one.Add(value1);
+            one.Add(value2);
+            one.Add(value3);
+
+            two.Add(value4);
+            two.Add(value5);
+            two.Add(value6);
+            two.Add(value7);
+            CustomList<int> customList = one - two;
+            string actual = customList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void OverloadMinusOperator_2ListsDifferentSize_Subtract2ValuesFromList1()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            string expected = "3,5,";
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 2;
+            int value5 = 1;
+            int value6 = 6;
+            int value7 = 6;
+
+            one.Add(value1);
+            one.Add(value2);
+            one.Add(value3);
+
+            two.Add(value4);
+            two.Add(value5);
+            two.Add(value6);
+            two.Add(value7);
+            CustomList<int> customList = one - two;
+            string actual = customList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void OverloadMinusOperator_List1Has2DupValuesList2Has1OfSame_Subtract()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            string expected = "3,5,";
+            int value1 = 1;
+            int value2 = 1;
+            int value3 = 5;
+            int value4 = 2;
+            int value5 = 1;
+            int value6 = 2;
+            int value7 = 6;
+
+            one.Add(value1);
+            one.Add(value2);
+            one.Add(value3);
+
+            two.Add(value4);
+            two.Add(value5);
+            two.Add(value6);
+            two.Add(value7);
+            CustomList<int> customList = one - two;
+            string actual = customList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void OverloadMinusOperator_2ListsSameValues_Subtract()
+        {
+            CustomList<int> one = new CustomList<int>();
+            CustomList<int> two = new CustomList<int>();
+
+            string expected = "";
+            int value1 = 1;
+            int value2 = 3;
+            int value3 = 5;
+            int value4 = 1;
+            int value5 = 3;
+            int value6 = 5;
+
+            one.Add(value1);
+            one.Add(value2);
+            one.Add(value3);
+
+            two.Add(value4);
+            two.Add(value5);
+            two.Add(value6);
+            CustomList<int> customList = one - two;
+            string actual = customList.ToString();
+
+            Assert.AreEqual(expected, actual);
+        }
 
         //[TestMethod]
         //[ExpectedException(typeof(ArgumentOutOfRangeException))]
@@ -716,6 +1015,8 @@ namespace CustomListProjectUnitTests
 
         //[TestMethod]
         //public void Remove_Value
+
+        //[TestMethod]
 
     }
 }
