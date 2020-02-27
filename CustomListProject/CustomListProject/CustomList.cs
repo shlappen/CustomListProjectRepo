@@ -54,6 +54,7 @@ namespace CustomListProject
                 capacity *= 2;
                 T[] targetArray = new T[capacity];
                 Copy(targetArray);
+                array = targetArray;
                 array[count - 1] = item;
             }
             else
@@ -69,59 +70,64 @@ namespace CustomListProject
             {
                 targetArray[i] = array[i];
             }
-            array = targetArray;
+
         }
 
         //COPY OVERLOAD
-        public void Copy(T[] sourceArray, int j)
+        //j is count - 1 remove last
+        public void Copy(T[] blankArray, int j)
         {
-            for (int i = j; j < count; i++)
+            for (int i = 0; i < j; i++)
             {
-                array[i] = sourceArray[j];
-                j++;
+                blankArray[i] = array[i];
             }
         }
         //COPY OVERLOAD
         public void Copy(T[] sourceArray, T[] targetArray, int j)
         {
-            for (int i = j; j < count; i++)
+            for (int i = j; j + 1 < count; i++)
             {
-                targetArray[i] = sourceArray[j + 1];
+                targetArray[i] = array[j + 1];
                 j++;
             }
-            array = targetArray;
         }
 
-
-        //REMOVE
-        //if count is 1 or cannot find value, throw error
-        public void Remove(T item)
+        public bool Remove(T item)
         {
-            count--;
             T[] targetArray = new T[capacity];
-            for (int i = 0; i < array.Length; i++)
+            bool found = false;
+            for (int i = 0; i < count; i++)
             {
+                var j = i;
+
                 if (Equals(array[i], item))
                 {
-                    var j = i;
-                    if (j == count)
+                    found = true;
+
+                    //remove last
+                    if (j == count - 1)
                     {
-                        Copy(targetArray);
+                        Copy(targetArray, j);
+                        array = targetArray;
                         break;
                     }
                     else
                     {
-                        Copy(array, array, j);
+                        Copy(targetArray, j);
+                        Copy(array, targetArray, j);
+                        array = targetArray;
                         //T[] sourceArray = new T[capacity];
-                        Copy(targetArray);
+                        //Copy(sourceArray);
+                        //array = sourceArray;
                         break;
                     }
                 }
-                //else
-                //{
-                //    throw new ArgumentException("Index is outside the bounds of the array");
-                //}
             }
+            if (found)
+            {
+                count--;
+            }
+            return found;
         }
 
 
@@ -137,7 +143,6 @@ namespace CustomListProject
         }
 
 
-
         //public override string ToString()
         //{
         //    string result = "";
@@ -147,6 +152,20 @@ namespace CustomListProject
         //    }
         //    return result;
         //}
+
+        public void Zip(List<T> list)
+        {
+            CustomList<T> concatenatedList = new CustomList<T>();
+            for (int i = 0; i < length; i++)
+            {
+                concatenatedList.Add(list[i]);
+
+                for (int j = 0; j < length; i++)
+                {
+
+                }
+            }
+        }
 
 
         public static CustomList<T> operator +(CustomList<T> listOne, CustomList<T> listTwo)
@@ -162,30 +181,11 @@ namespace CustomListProject
 
         public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
         {
-            for (int i = 0; i < listOne.count - 1; i++)
-            {
-                for (int j = 0; j < listTwo.count - 1; j++)
-                {
-                    if (Equals(listOne[i], listTwo[j]))
-                    {
-                        listOne.Remove(listOne[i]);
-                    }
-                }
-            }
-            //foreach (T listOneItem in listOne)
-            //{
-            //    foreach (T listTwoItem in listTwo)
-            //    {
-            //        if (Equals(listOneItem, listTwoItem))
-            //        {
-            //            listOne.Remove(listOneItem);
-            //        }
-
-            //    }
-
-            //}
-            listOne.count -=;
             CustomList<T> concatenatedList = new CustomList<T>();
+            for (int i = 0; i < listTwo.count; i++)
+            {
+                listOne.Remove(listTwo[i]);
+            }
             concatenatedList = listOne;
             return concatenatedList;
         }
