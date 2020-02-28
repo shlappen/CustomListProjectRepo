@@ -1,0 +1,54 @@
+List<T> operator -
+
+Syntax
+expression1 - expression2, where each expression is a List<T>
+
+Overloads the minus (-) operator to remove specific objects of the same value in the right-hand expression List<T> from the left-hand expression List<T>.
+
+Parameters
+Typically two (but at least one) instance of the List<T>.  Each respective instance of a List<T> can contain the same or a different number of values but will not be equated or removed unless they are of the same data type.
+
+Return Type
+List<T>
+
+Implements
+Remove(T item)
+
+Result
+The - operator returns expression1 (a List<T>) less each instance of a specific object of the same value from another List<T>.
+
+Example
+
+            CustomList<int> listOne = new CustomList<int>();
+            CustomList<int> listTwo = new CustomList<int>();
+            //declare values
+            int value1 = 1;
+            int value2 = 1;
+            int value3 = 5;
+            int value4 = 2;
+            int value5 = 1;
+            int value6 = 2;
+
+            //add these values to each list
+            listOne.Add(value1);
+            listOne.Add(value2);
+            listOne.Add(value3);
+
+            listTwo.Add(value4);
+            listTwo.Add(value5);
+            listTwo.Add(value6);
+
+            Console.WriteLine(listOne - listTwo);
+            //output: 1,5,
+
+            //Note:  the Console.WriteLine implicitly calls the overridden ToString() method for the CustomList<T> class:
+            //    public override string ToString()
+            //{
+            //    var result = new StringBuilder();
+            //    for (int i = 0; i < count; i++)
+            //    {
+            //        result.Append(array[i].ToString() + ",");
+            //    }
+            //    return result.ToString();
+            //}
+    }

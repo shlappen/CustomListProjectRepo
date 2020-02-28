@@ -187,6 +187,10 @@ namespace CustomListProject
             {
                 listOne.Remove(listTwo[i]);
             }
+            if (Equals(listOne[0], listTwo[0]))
+            {
+                listOne.Remove(listOne[0]);
+            }
             concatenatedList = listOne;
             return concatenatedList;
         }
