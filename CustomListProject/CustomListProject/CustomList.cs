@@ -130,7 +130,6 @@ namespace CustomListProject
             return found;
         }
 
-
         //TOSTRING
         public override string ToString()
         {
@@ -153,21 +152,21 @@ namespace CustomListProject
         //    return result;
         //}
 
-        public void Zip(List<T> list)
+
+        //Zip
+        public CustomList<T> Zip(CustomList<T> list)
         {
             CustomList<T> concatenatedList = new CustomList<T>();
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < list.count; i++)
             {
+                concatenatedList.Add(array[i]);
                 concatenatedList.Add(list[i]);
 
-                for (int j = 0; j < length; i++)
-                {
-
-                }
             }
+            return concatenatedList;
         }
 
-
+        //+Operator overload
         public static CustomList<T> operator +(CustomList<T> listOne, CustomList<T> listTwo)
         {
             for (int i = 0; i < listTwo.count; i++)
@@ -179,6 +178,8 @@ namespace CustomListProject
             return concatenatedList;
         }
 
+
+        //-Operator overload
         public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
         {
             CustomList<T> concatenatedList = new CustomList<T>();

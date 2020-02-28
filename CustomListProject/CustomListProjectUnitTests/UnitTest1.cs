@@ -272,10 +272,8 @@ namespace CustomListProjectUnitTests
         //Remove
         //remove anything not in the list, count stays the same
 
-
         [TestMethod]
-        //[ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public void Remove_Value2From1ValueArray_GetCount()
+        public void Remove_NonExistentValue_GetCount()
         {
             CustomList<int> myList = new CustomList<int>();
             int expected = 1;
@@ -286,6 +284,22 @@ namespace CustomListProjectUnitTests
 
 
             myList.Remove(20);
+            int actual = myList.Count;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_ValueFrom1ValueArray_GetCount()
+        {
+            CustomList<int> myList = new CustomList<int>();
+            int expected = 0;
+            int value1 = 2;
+
+
+            myList.Add(value1);
+
+
+            myList.Remove(value1);
             int actual = myList.Count;
             Assert.AreEqual(expected, actual);
         }
@@ -329,7 +343,7 @@ namespace CustomListProjectUnitTests
         }
 
         [TestMethod]
-        public void Remove_Value2From2ValueArray_GetIndex1()
+        public void Remove_ValueNotInList_ReturnFalse()
         {
             CustomList<int> myList = new CustomList<int>();
             bool expected = false;
@@ -339,8 +353,7 @@ namespace CustomListProjectUnitTests
             myList.Add(value1);
             myList.Add(value2);
 
-            myList.Remove(value1);
-            bool actual = myList.Remove(value1);
+            bool actual = myList.Remove(5);
 
 
             Assert.AreEqual(expected, actual);
@@ -1037,7 +1050,7 @@ namespace CustomListProjectUnitTests
             CustomList<int> odd = new CustomList<int>();
             CustomList<int> even = new CustomList<int>();
 
-            int expected = 8;
+            string expected = "1,2,3,4,5,6,";
             int value1 = 1;
             int value2 = 2;
             int value3 = 3;
@@ -1052,12 +1065,76 @@ namespace CustomListProjectUnitTests
             even.Add(value2);
             even.Add(value4);
             even.Add(value6);
-            odd.Zip(even);
-            int actual = customList.Capacity;
+
+            string actual = odd.Zip(even).ToString();
 
             Assert.AreEqual(expected, actual);
 
         }
+
+        [TestMethod]
+        public void Zip_TwoListsDifferentSizes_Together()
+        {
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+
+            string expected = "1,2,3,4,5,6,";
+            int value1 = 1;
+            int value2 = 2;
+            int value3 = 3;
+            int value4 = 4;
+            int value5 = 5;
+            int value6 = 6;
+            int value7 = 7;
+
+            odd.Add(value1);
+            odd.Add(value3);
+            odd.Add(value5);
+            odd.Add(value7);
+
+            even.Add(value2);
+            even.Add(value4);
+            even.Add(value6);
+
+            string actual = odd.Zip(even).ToString();
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
+
+        [TestMethod]
+        public void Zip_TwoListsWhereSomeValuesAreTheSame_Together()
+        {
+            CustomList<int> odd = new CustomList<int>();
+            CustomList<int> even = new CustomList<int>();
+
+            string expected = "1,2,3,4,5,6,7,2,";
+            int value1 = 1;
+            int value2 = 2;
+            int value3 = 3;
+            int value4 = 4;
+            int value5 = 5;
+            int value6 = 6;
+            int value7 = 7;
+
+            odd.Add(value1);
+            odd.Add(value3);
+            odd.Add(value5);
+            odd.Add(value7);
+
+            even.Add(value2);
+            even.Add(value4);
+            even.Add(value6);
+            even.Add(value2);
+
+            string actual = odd.Zip(even).ToString();
+
+            Assert.AreEqual(expected, actual);
+
+        }
+
         //[TestMethod]
         //[ExpectedException(typeof(ArgumentOutOfRangeException))]
 
